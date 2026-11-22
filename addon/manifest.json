@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Sieve Editor Launcher",
+  "version": "1.1",
+  "description": "Toolbar button and Ctrl+Alt+S shortcut to open an external Sieve editor.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "thunderbird-sieve-launcher@amaramrahul.github.io",
+      "strict_min_version": "140.0"
+    }
+  },
+  "permissions": ["nativeMessaging"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "action": {
+    "default_title": "Open Sieve editor",
+    "default_label": "Sieve",
+    "default_icon": "icon.svg"
+  },
+  "commands": {
+    "launch-sieve": {
+      "suggested_key": { "default": "Ctrl+Alt+S" },
+      "description": "Open the external Sieve editor"
+    }
+  }
+}
