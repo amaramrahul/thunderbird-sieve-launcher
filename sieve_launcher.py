@@ -11,7 +11,11 @@ import struct
 import subprocess
 import sys
 
-CONFIG = os.path.expanduser("~/.config/sieve-launcher/command")
+CONFIG = os.path.join(
+    os.environ.get("XDG_CONFIG_HOME") or os.path.expanduser("~/.config"),
+    "sieve-launcher",
+    "command",
+)
 DEFAULT = "sieveeditor"
 
 

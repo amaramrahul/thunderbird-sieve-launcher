@@ -13,8 +13,7 @@ API, and the helper starts the editor.
 ```
 addon/              the Thunderbird add-on (button + shortcut)
 sieve_launcher.py   native helper that starts the editor
-install.sh          installs and registers the helper
-uninstall.sh        removes everything install.sh created
+install.sh          installs and registers the helper (--uninstall removes it)
 build.sh            packages addon/ into sieve-launcher.xpi
 ```
 
@@ -51,7 +50,8 @@ build.sh            packages addon/ into sieve-launcher.xpi
 Click the **Sieve** button or press **Ctrl+Alt+S**. If the button is not on the
 toolbar, right-click the toolbar, choose **Customize**, and drag it in.
 
-To change the editor, edit `~/.config/sieve-launcher/command` (one line).
+To change the editor, edit `~/.config/sieve-launcher/command` (one line;
+`$XDG_CONFIG_HOME` is honored).
 
 If nothing happens, check **Tools → Developer Tools → Error Console** for
 messages from the add-on.
@@ -62,7 +62,7 @@ Check the helper without Thunderbird by sending it a launch message. This
 starts your configured editor and prints `{"ok": true}`:
 
 ```sh
-printf '\x14\x00\x00\x00{"action": "launch"}' | ~/.local/bin/sieve_launcher.py
+printf '\x14\x00\x00\x00{"action": "launch"}' | ~/.local/lib/sieve-launcher/sieve_launcher.py
 ```
 
 ## Uninstalling
@@ -70,8 +70,11 @@ printf '\x14\x00\x00\x00{"action": "launch"}' | ~/.local/bin/sieve_launcher.py
 Remove the add-on from **Add-ons and Themes**, then run:
 
 ```sh
-./uninstall.sh
+./install.sh --uninstall
 ```
+
+This removes the helper, the Thunderbird registration and the config
+directory.
 
 ## License
 
